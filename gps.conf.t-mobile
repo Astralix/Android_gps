@@ -1,0 +1,152 @@
+##################################################
+# gps.conf file for improving GPS functionality on 
+# bq Aqaris 5 phones
+# 
+# version 0.0.7 by Astralix
+##################################################
+
+##################################################
+# Adapt the country tuple according your location
+# Find out how at this link:
+# http://www.pool.ntp.org/en/
+
+NTP_SERVER=de.pool.ntp.org
+NTP_SERVER=europe.pool.ntp.org
+
+##################################################
+# Locations of AGPS and XTRA files
+
+# AGPS=http://derekgordon.com/gps-files/bin/xtra.bin
+XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin
+XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin
+XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin
+XTRA_SERVER_4=http://xtra4.gpsonextra.net/xtra.bin
+XTRA_SERVER_5=http://xtra5.gpsonextra.net/xtra.bin
+ 
+##################################################
+# GPS daemon startup parameters
+
+DEFAULT_AGPS_ENABLE=TRUE
+DEFAULT_USER_PLANE=TRUE
+DEFAULT_SSL_ENABLE=FALSE
+
+##################################################
+# DEBUG LEVELS: 0 - none, 1 - Error, 2 - Warning, 
+# 	3 - Info, 4 - Debug, 5 - Verbose
+
+DEBUG_LEVEL=3
+
+##################################################
+# Use intermediate position information of not
+# completely locked satellites
+
+INTERMEDIATE_POS=1
+ACCURACY_THRES=3000
+
+##################################################
+# SUPPL version 1.0
+
+SUPL_VER=0x10000
+
+##################################################
+# Error estimation
+
+ERR_ESTIMATE=0
+
+##################################################
+# GPS Capabilities bit mask
+# SCHEDULING = 1
+# MSB = 2
+# MSA = 4
+# ULP = 0x20
+# default = MSA | MSB | SCHEDULING | ULP
+CAPABILITIES=0x07
+
+##################################################
+# Quality limits for data to be used for
+# referencing our position
+
+QOS_ACCURACY=50
+QOS_TIME_OUT_AGPS=95
+QOS_TIME_OUT_STANDALONE=80
+QosHorizontalThreshold=1000
+QosVerticalThreshold=500
+
+##################################################
+# AGPS configuration options
+
+AssistMethodType=1
+AgpsUse=1
+AgpsServerType=1
+AgpsServerIp=3232235555
+AgpsMtConf=0
+AgpsMtResponseType=1
+
+##################################################
+# AGPS supplying server settings
+# Check that /sytem/etc/SuplRootCert is available
+# before enabling SUPL_TLS_*
+
+# SUPL_HOST=supl.google.com
+# SUPL_PORT=7276
+# SUPL_SECURE_PORT=7275
+# SUPL_NO_SECURE_PORT=3425
+# SUPL_TLS_HOST=FQDN
+# SUPL_TLS_CERT=/etc/SuplRootCert
+# REPORT_POSITION_USE_SUPL_REFLOC=1
+
+### AGPS alternative setting NOKIA ###############
+# SUPL_HOST=supl.nokia.com
+# SUPL_PORT=7275
+
+### AGPS alternative setting  SONY ###############
+# SUPL_HOST=supl.sonyericsson.com
+# SUPL_PORT=7275
+
+### AGPS alternative setting T-MOBILE ############
+SUPL_HOST=10.176.29.225
+SUPL_PORT=7275
+SUPL_TLS_HOST=lbs.geo.t-mobile.com
+SUPL_TLS_CERT=/etc/SuplRootCertTMO
+REPORT_POSITION_USE_SUPL_REFLOC=1
+
+##################################################
+# NEVER SET THIS AS IT IS FOR TESTING ONLY AND
+# REQUIRES YOU TO HAVE C2K PDE EQUIPMENT FOR GPS
+# SIMULATION AND KNOW HOW TO HANDLE IT!
+# C2K_HOST=c2k.pde.com
+# C2K_PORT=1234
+
+##################################################
+# Sensor Settings
+
+# Needs to be set explicitly based on sensor
+# There is no default value.
+#GYRO_BIAS_RANDOM_WALK=
+
+# These are the defaults inside android code.
+SENSOR_ACCEL_BATCHES_PER_SEC=2
+SENSOR_ACCEL_SAMPLES_PER_BATCH=5
+SENSOR_GYRO_BATCHES_PER_SEC=2
+SENSOR_GYRO_SAMPLES_PER_BATCH=5
+
+# Sensor Control Mode (0=AUTO, 1=FORCE_ON)
+SENSOR_CONTROL_MODE=0
+
+# Control use of Sensors for GPS
+SENSOR_USAGE=1
+
+# Choose GSIFF sensor provider (1=DSPS, 2=Android NDK)
+SENSOR_PROVIDER=2
+
+# Use WiFi Position to support AGPS
+ENABLE_WIPER=1
+
+
+##################################################
+# Carrier tags
+
+CURRENT_CARRIER=common
+PHONE_TYPE=UMTS
+
+###### END OF CONFIG ######
